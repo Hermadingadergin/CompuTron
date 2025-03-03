@@ -212,7 +212,7 @@ void dump(std::array<int, memorySize>& memory, int accumulator,
 
     std::cout << "Memory:\n     0    1    2    3    4    5    6    7    8    9";
 
-    for (size_t i = 0; i < 100; i++)
+    for (size_t i = 0; i < memorySize; i++)
     {
         if (i % 10 == 0) // creating a new rows with the appropriate headers
         {
@@ -282,7 +282,7 @@ void output(std::string label, int width, int value, bool sign)
                 }
                 else
                 {
-                    if (width >= 1000 && width <= 9999) // width of 1000-9999
+                    if (width >= 1000 && width <= maxWord) // width of 1000-9999
                     {
                         result += ("accumulator          +" + std::to_string(width) + "\n");
                     }
@@ -292,25 +292,25 @@ void output(std::string label, int width, int value, bool sign)
     }
     else
     {
-        if (width / 10 == 0) // width of negative 1-9
+        if (-width / 10 == 0) // width of negative 1-9
         {
             result += ("accumulator          -000" + std::to_string(-width) + "\n");
         }
         else
         {
-            if (width >= 10 && width <= 99) // width of negative 10-99
+            if (-width >= 10 && -width <= 99) // width of negative 10-99
             {
                 result += ("accumulator          -00" + std::to_string(-width) + "\n");
             }
             else
             {
-                if (width >= 100 && width <= 999) // width of negative 100-999
+                if (-width >= 100 && -width <= 999) // width of negative 100-999
                 {
                     result += ("accumulator          -0" + std::to_string(-width) + "\n");
                 }
                 else
                 {
-                    if (width >= 1000 && width <= 9999) // width of negative 1000-9999
+                    if (-width >= 1000 && -width <= maxWord) // width of negative 1000-9999
                     {
                         result += ("accumulator          -" + std::to_string(-width) + "\n");
                     }
@@ -332,7 +332,7 @@ void output(std::string label, int width, int value, bool sign)
     }
 
     std::string plusorminus;
-    if (sign)
+    if (sign) // appropriate sign for instructionRegister, should be +
     {
         plusorminus = "+";
     }
@@ -340,8 +340,8 @@ void output(std::string label, int width, int value, bool sign)
     {
         plusorminus = "-";
     }
-    result += "instructionRegister  " + plusorminus + label + "\n";
-    result += "operationCode        " + label.substr(0, 2) + "\n";
-    result += "operand              " + label.substr(2, 2) + "\n";
+    result += "instructionRegister  " + plusorminus + label + "\n"; // adding instructionRegister to result
+    result += "operationCode        " + label.substr(0, 2) + "\n"; // adding opCode (first 2 digits of instructionRegister)
+    result += "operand              " + label.substr(2, 2) + "\n"; // adding operand (last 2 digits of instructionRegister)
     std::cout << result;
 };
