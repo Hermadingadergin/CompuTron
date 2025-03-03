@@ -144,6 +144,10 @@ void execute(std::array<int, memorySize>& memory,
 
         case Command::divide:
             // as above do it for division
+            if (*acPtr == 0)
+            {
+                throw std::runtime_error("invalid divisor");
+            }
             word = memory[*opPtr] / *acPtr; // Divide the value in memory at the location pointed to by 'opPtr' by the value in the accumulator (acPtr) and store the result in 'word'
             if (validWord(word)) // If the result is valid, store it in the accumulator and increment the instruction counter
             {
