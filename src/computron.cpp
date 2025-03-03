@@ -231,7 +231,7 @@ void dump(std::array<int, memorySize>& memory, int accumulator,
             std::cout << "+";
             if (std::to_string(memory[i]).size() < 4)
             {
-                for (int j = 0; j < 4 - std::to_string(memory[i]).size(); j++) // zero filling if necessary
+                for (size_t j = 0; j < 4 - std::to_string(memory[i]).size(); j++) // zero filling if necessary
                 {
                     std::cout << std::to_string(0);
                 }
@@ -243,7 +243,7 @@ void dump(std::array<int, memorySize>& memory, int accumulator,
             std::cout << "-";
             if (std::to_string(memory[i]).size() < 5)
             {
-                for (int j = 0; j < 5 - std::to_string(memory[i]).size(); j++) // zero filling if necessary
+                for (size_t j = 0; j < 5 - std::to_string(memory[i]).size(); j++) // zero filling if necessary
                 {
                     std::cout << std::to_string(0);
                 }
